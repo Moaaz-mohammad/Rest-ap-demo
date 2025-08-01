@@ -67,4 +67,8 @@ class PostPolicy
     public function bookmark(User $user, Post $post) {
         return $post->status == 'draft';
     }
+
+    public function unbookmark(User $user,Post $post) {
+        return $user->bookmarkedPosts()->where('post_id', $post->id)->exists();
+    }
 }

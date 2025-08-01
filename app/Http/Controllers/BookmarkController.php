@@ -34,6 +34,8 @@ class BookmarkController extends Controller
 
     public function destroy(Request $request, Post $post) {
         
+        $this->authorize('unbookmark', $post);
+        
         $request->user()->bookmarkedPosts()->detach($post);
 
         return response()->json([

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostResource extends JsonResource
@@ -25,6 +26,7 @@ class PostResource extends JsonResource
             'status' => $this->status,
             'created_at' => $this->created_at->toDateTimeString(),
             'bookmarked' => auth()->check() ? auth()->user()->bookmarkedPosts->contains($this->id) : false,
+            // 'can_unbookmark' => auth()->user()?->can('unbookmark', $this),
         ];
     }
 }
