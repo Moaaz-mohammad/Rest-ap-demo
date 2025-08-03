@@ -91,4 +91,8 @@ class Post extends Model
     public function bookmarkedByUsers() {
         return $this->belongsToMany(User::class, 'bookmark_post');
     }
+
+    public function reports() {
+        return $this->hasMany(PostReport::class);
+    }
 }

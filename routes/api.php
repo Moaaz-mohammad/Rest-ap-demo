@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostReaportController;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +52,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/posts/{post}/bookmark', [BookmarkController::class, 'destroy']);
 
     Route::post('/posts/{id}/archive', [PostController::class, 'archive']);
+
+    // Report
+    Route::post('/posts/report', [PostReaportController::class, 'store']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);
