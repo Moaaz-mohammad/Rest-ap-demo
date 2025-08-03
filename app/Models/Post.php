@@ -60,10 +60,9 @@ class Post extends Model
                     $query->orderBy('created_at', 'asc');
                     break;
                 default:
-                    $query->orderBy('created_at', 'asc');
+                    $query->orderBy('created_at', 'desc');
                 break;
             }
-
         }
     }
 

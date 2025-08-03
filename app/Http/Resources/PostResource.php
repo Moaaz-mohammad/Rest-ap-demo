@@ -27,6 +27,7 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at->toDateTimeString(),
             'bookmarked' => auth()->check() ? auth()->user()->bookmarkedPosts->contains($this->id) : false,
             // 'can_unbookmark' => auth()->user()?->can('unbookmark', $this),
+            // 'can_archive' => auth()->check() ? auth()->user()->can('archive', $this) : false,
         ];
     }
 }

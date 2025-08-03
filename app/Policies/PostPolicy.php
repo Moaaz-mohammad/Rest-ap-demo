@@ -45,7 +45,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_id && $post->status !== 'published';
     }
 
     /**
@@ -65,10 +65,14 @@ class PostPolicy
     // }
 
     public function bookmark(User $user, Post $post) {
-        return $post->status == 'draft';
+        return $post->status === 'published';
     }
 
     public function unbookmark(User $user,Post $post) {
         return $user->bookmarkedPosts()->where('post_id', $post->id)->exists();
+    }
+
+    public function archive(User $user, Post $post) {
+        return $user->id === $post->user_id;
     }
 }

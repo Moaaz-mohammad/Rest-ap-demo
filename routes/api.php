@@ -49,6 +49,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/bookmarks', [BookmarkController::class, 'index']);
     Route::post('/posts/{post}/bookmark', [BookmarkController::class, 'store']);
     Route::delete('/posts/{post}/bookmark', [BookmarkController::class, 'destroy']);
+
+    Route::post('/posts/{id}/archive', [PostController::class, 'archive']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);

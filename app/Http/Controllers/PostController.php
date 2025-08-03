@@ -293,4 +293,28 @@ class PostController extends Controller
             'message' => 'Post unliked succefully.'
         ]);
     }
+
+    public function archive($id) {
+
+        $post = Post::findOrFail($id);
+
+        $this->authorize('archive', $post);
+
+        if ($post->status == 'archived') {
+            $post->update(['status' => 'draft']);
+            return response()->json([
+                'message' => 'Post unarchived successfully',
+            ]);
+        }
+
+        $post->update(['status' => 'archived']);
+
+        return response()->json([
+            'message' => 'Post archived successfully',
+        ]);
+    }
+
+    // public function unarchived($id) {
+
+    // }
 }
